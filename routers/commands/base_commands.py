@@ -11,11 +11,14 @@ def start_msg_keyboard():
     btn1 = KeyboardButton(text="H3lp?")
     btn2 = KeyboardButton(text="DINAHU")
     btn3 = KeyboardButton(text="GOEV")
+    btn4 = KeyboardButton(text="DEGEN🤑")
     btn_proxy = KeyboardButton(text="Proxy🪓")
     buttons_first_row = [btn1, btn2, btn3]
-    buttons_second_row = [btn_proxy]
+    buttons_second_row = [btn4]
+    buttons_third_row = [btn_proxy]
     markup = ReplyKeyboardMarkup(keyboard=[buttons_first_row,
-                                           buttons_second_row],
+                                           buttons_second_row,
+                                           buttons_third_row],
                                  resize_keyboard=True, one_time_keyboard=True)
     return markup
 
@@ -39,14 +42,3 @@ async def message_help_handler(message: Message):
     await message.answer(text=text)
     with open("proxy.txt") as file:
         file.__del__()
-
-
-@router.message(Command('goev'))
-@router.message(F.text == 'GOEV')
-async def message_help_handler(message: Message):
-    sticker = "CAACAgIAAxkBAAIB6GajWt1FrT_7A5s00ogERLjGjYqKAALwPwACrzEISSRgRGMqGYCzNQQ"
-
-    chat_id = message.chat.id
-    await message.bot.send_sticker(chat_id=chat_id, sticker=sticker,
-                                   reply_markup=ReplyKeyboardRemove())
-
